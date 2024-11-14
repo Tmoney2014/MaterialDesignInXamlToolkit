@@ -119,6 +119,28 @@ public static class HintAssist
         => element.SetValue(BackgroundProperty, value);
     #endregion
 
+    #region AttachedProperty: HintPaddingBrush
+    public static readonly DependencyProperty HintPaddingBrushProperty =
+        DependencyProperty.RegisterAttached("HintPaddingBrush", typeof(Brush), typeof(HintAssist), new PropertyMetadata(null));
+
+    public static Brush? GetHintPaddingBrush(DependencyObject obj)
+        => (Brush)obj.GetValue(HintPaddingBrushProperty);
+
+    public static void SetHintPaddingBrush(DependencyObject obj, Brush? value)
+        => obj.SetValue(HintPaddingBrushProperty, value);
+    #endregion
+
+    #region AttachedProperty: ApplyHintPaddingBrush
+    public static readonly DependencyProperty ApplyHintPaddingBrushProperty =
+        DependencyProperty.RegisterAttached("ApplyHintPaddingBrush", typeof(bool), typeof(HintAssist), new PropertyMetadata(false));
+
+    public static bool GetApplyHintPaddingBrush(DependencyObject obj)
+        => (bool)obj.GetValue(ApplyHintPaddingBrushProperty);
+
+    public static void SetApplyHintPaddingBrush(DependencyObject obj, bool value)
+        => obj.SetValue(ApplyHintPaddingBrushProperty, value);
+    #endregion
+
     #region AttachedProperty : HelperTextProperty
     public static readonly DependencyProperty HelperTextProperty
         = DependencyProperty.RegisterAttached("HelperText", typeof(string), typeof(HintAssist),

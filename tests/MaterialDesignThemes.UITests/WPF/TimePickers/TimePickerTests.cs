@@ -560,11 +560,10 @@ public class TimePickerTests : TestBase
         var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
         var hintBackgroundGrid = await timePicker.GetElement<Grid>("HintBackgroundGrid");
 
-        var defaultBackground = Colors.Transparent; 
         var defaultFloatedBackground = await GetThemeColor("MaterialDesign.Brush.Background");
 
         // Assert (unfocused state)
-        Assert.Equal(defaultBackground, await hintBackgroundGrid.GetBackgroundColor());
+        Assert.Null(await hintBackgroundGrid.GetBackgroundColor());
 
         // Act
         await timePickerTextBox.MoveKeyboardFocus();
@@ -640,6 +639,36 @@ public class TimePickerTests : TestBase
         // Assert
         Assert.Equal(expectedThickness, timePickerTextBoxHoverThickness);
         Assert.Equal(expectedThickness, timePickerTimeButtonHoverThickness);
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3650")]
+    public async Task TimePicker_MovesFocusToPrevious_WhenShiftAndTabIsPressed()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        var stackPanel = await LoadXaml<StackPanel>("""
+            <StackPanel>
+              <TextBox />
+              <materialDesign:TimePicker />
+            </StackPanel>
+            """);
+
+        var textBox = await stackPanel.GetElement<TextBox>("/TextBox");
+        var timePickerTextBox = await stackPanel.GetElement<TimePickerTextBox>("/TimePickerTextBox");
+
+        // Act
+        await timePickerTextBox.MoveKeyboardFocus();
+        await Task.Delay(50);
+        await timePickerTextBox.SendInput(new KeyboardInput(Key.LeftShift, Key.Tab));
+        await Task.Delay(50);
+
+        // Assert
+        Assert.True(await textBox.GetIsFocused());
+        Assert.False(await timePickerTextBox.GetIsFocused());
 
         recorder.Success();
     }

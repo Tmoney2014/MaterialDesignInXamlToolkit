@@ -170,6 +170,15 @@ public class TimePicker : Control
     public static readonly DependencyProperty IsHeaderVisibleProperty = DependencyProperty.Register(
         nameof(IsHeaderVisible), typeof(bool), typeof(TimePicker), new PropertyMetadata(default(bool)));
 
+    public Visibility ClockButtonVisibility
+    {
+        get => (Visibility)GetValue(ClockButtonVisibilityProperty);
+        set => SetValue(ClockButtonVisibilityProperty, value);
+    }
+
+    public static readonly DependencyProperty ClockButtonVisibilityProperty =
+        DependencyProperty.Register(nameof(ClockButtonVisibility), typeof(Visibility), typeof(TimePicker), new PropertyMetadata(Visibility.Visible));
+
     public bool IsHeaderVisible
     {
         get => (bool)GetValue(IsHeaderVisibleProperty);
@@ -371,7 +380,7 @@ public class TimePicker : Control
                     {
                         case Key.Down:
                             {
-                                if ((Keyboard.Modifiers & ModifierKeys.Alt) == ModifierKeys.Alt)
+                                if (Keyboard.Modifiers.HasFlag(ModifierKeys.Alt))
                                 {
                                     TogglePopup();
                                     return true;

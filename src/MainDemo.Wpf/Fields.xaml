@@ -1,7 +1,7 @@
 <UserControl x:Class="MaterialDesignDemo.Fields"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
+             xmlns:converters="clr-namespace:MaterialDesignDemo.Shared.Converters;assembly=MaterialDesignDemo.Shared"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
@@ -670,6 +670,20 @@
         </TextBox>
       </smtx:XamlDisplay>
     </StackPanel>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom Background" />
+
+    <WrapPanel Margin="0,0,0,32" Background="Chocolate">
+      <smtx:XamlDisplay Margin="16"
+                        UniqueKey="fields_custom_background_1">
+        <TextBox Width="200"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 materialDesign:HintAssist.Hint="Hint text"
+                 materialDesign:HintAssist.HintPaddingBrush="Chocolate" />
+        <!-- Set HintAssist.HintPaddingBrush to match the custom background to get correct coloring of the hint padding (when floated) -->
+      </smtx:XamlDisplay>
+    </WrapPanel>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="AutoSuggestBox" />

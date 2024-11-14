@@ -2,9 +2,9 @@
 using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 
-namespace MaterialDesignDemo.Domain;
+namespace MaterialDesignDemo.Shared.Domain;
 
-internal class ColorToolViewModel : ViewModelBase
+public class ColorToolViewModel : ViewModelBase
 {
     private readonly PaletteHelper _paletteHelper = new();
 

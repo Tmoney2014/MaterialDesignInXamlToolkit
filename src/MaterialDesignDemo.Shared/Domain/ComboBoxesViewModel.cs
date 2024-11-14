@@ -1,4 +1,6 @@
-﻿namespace MaterialDesignDemo.Domain;
+﻿using System.IO;
+
+namespace MaterialDesignDemo.Shared.Domain;
 
 public class ComboBoxesViewModel : ViewModelBase
 {
@@ -10,17 +12,17 @@ public class ComboBoxesViewModel : ViewModelBase
     public ComboBoxesViewModel()
     {
         LongIntegerList = new List<int>(Enumerable.Range(0, 1000));
-        ShortStringList = new[]
-        {
+        ShortStringList =
+        [
             "Item 1",
             "Item 2",
             "Item 3"
-        };
+        ];
 
         SelectedValueOne = LongIntegerList.Skip(2).First();
         SelectedTextTwo = null;
 
-        LongStringList = new List<string>();
+        LongStringList = [];
 
         for (int i = 0; i < 1000; i++)
         {

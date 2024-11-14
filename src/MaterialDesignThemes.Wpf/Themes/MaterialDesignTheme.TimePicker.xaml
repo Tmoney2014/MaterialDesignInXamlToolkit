@@ -39,6 +39,7 @@
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="IsHeaderVisible" Value="True" />
     <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
+    <Setter Property="Focusable" Value="False" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:TimePicker}">
@@ -71,6 +72,7 @@
                                    wpf:HintAssist.FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
                                    wpf:HintAssist.Foreground="{TemplateBinding wpf:HintAssist.Foreground}"
                                    wpf:HintAssist.Background="{TemplateBinding wpf:HintAssist.Background}"
+                                   wpf:HintAssist.HintPaddingBrush="{TemplateBinding wpf:HintAssist.HintPaddingBrush}"
                                    wpf:HintAssist.HelperTextStyle="{TemplateBinding wpf:HintAssist.HelperTextStyle}"
                                    wpf:HintAssist.Hint="{TemplateBinding wpf:HintAssist.Hint}"
                                    wpf:HintAssist.HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
@@ -101,7 +103,6 @@
                                    wpf:TextFieldAssist.UnderlineCornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
                                    internal:InternalTextFieldAssist.IsMouseOver="{TemplateBinding IsMouseOver}"
                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                   Focusable="{TemplateBinding Focusable}"
                                    Style="{DynamicResource NestedTextBoxStyle}">
               <wpf:TimePickerTextBox.BorderThickness>
                 <PriorityBinding>
@@ -120,6 +121,7 @@
             <!-- VerticalAlignment=Center to follow the default ComboBox style where the arrow is always vertically centered. Could be problematic to try to calculate the offset because it needs to be v-centered in relation to the content of the nested TextBox -->
             <Button x:Name="PART_Button"
                     Height="16"
+                    Visibility="{TemplateBinding ClockButtonVisibility}"
                     Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"

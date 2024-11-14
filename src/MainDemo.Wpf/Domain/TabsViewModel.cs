@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using MaterialDesignDemo.Shared.Domain;
 
 namespace MaterialDesignDemo.Domain;
 
@@ -22,10 +23,10 @@ Nulla a porta libero, quis hendrerit ex. In ut pharetra sem. Nunc gravida ante r
 
     public TabsViewModel()
     {
-        var closeCommand = new AnotherCommandImplementation(_ =>
+        var closeCommand = new AnotherCommandImplementation(tab =>
         {
-            if (SelectedTab is { } selectedTab)
-                CustomTabs?.Remove(selectedTab);
+            if (tab is CustomTab castedTab)
+                CustomTabs?.Remove(castedTab);
         });
 
         CustomTabs = new()

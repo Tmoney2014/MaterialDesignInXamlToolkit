@@ -2,9 +2,9 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace MaterialDesign3Demo.Converters;
+namespace MaterialDesignDemo.Shared.Converters;
 
-public class StringJoinConverter : IValueConverter
+public sealed class StringJoinConverter : IValueConverter
 {
     public string? Separator { get; set; }
 
@@ -15,7 +15,5 @@ public class StringJoinConverter : IValueConverter
     }
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
-    }
+        => throw new NotImplementedException();
 }
